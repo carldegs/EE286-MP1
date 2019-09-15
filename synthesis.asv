@@ -1,0 +1,11 @@
+%% PLOT SPECTOGRAM OF THE INSTRUMENTS
+[x,fs]
+
+% plot_spectrogram('Piano_mf_A4.wav');
+filepath = 'Piano_mf_A4.wav';
+%filepath='snare.wav';
+%filepath='Trumpet_novib_A4.wav';
+[x, fs] = audioread(filepath);
+soundsc(x,fs);
+spectrogram(x, 256*2, [], 0:5000, fs, 'yaxis');
+title(filepath);
