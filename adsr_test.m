@@ -1,4 +1,4 @@
-[x,fs]=audioread('snare.wav');
+[x,fs]=audioread('Piano_mf_A4.wav');
 figure; plot(x(:,1));
 [a,d,s,r,P,t] = getADSR(x,fs);
 fs2=8000;
@@ -6,6 +6,6 @@ fs2=8000;
 close all;
 figure;plot(t, P); hold; 
 plot(tenv,env);
-
+legend('P', 'env');
 
 
