@@ -6,10 +6,12 @@ function [a,d,s,r, t, P, sDuration] = getADSR(x, fs)
     pdiff=diff(10*log10(P)); %% get the decibel diff
 
     %% We assume that the only rise is in the beginning from t0 up to attack end, where it is the maximum value
-    a_start = find(pdiff>5,1); 
+    % attack start is identified as the point where we get a 6dB rise
+    a_start = find(pdiff>6,1); 
     if isempty(a_start)
         a_start = 1;
     end
+    % the attack
     a_end = find(P==max(P));
     if isempty(a_end(a_end >= a_start))
         a = t(a_end);
@@ -19,6 +21,8 @@ function [a,d,s,r, t, P, sDuration] = getADSR(x, fs)
     end
     
     %% Get decay end
+    % Find the sustain start, diff will be about 0dB or increasing
+    % at this point
     for decay_end=a_end:length(pdiff)
         if pdiff(decay_end) > 0
             break
@@ -38,7 +42,7 @@ function [a,d,s,r, t, P, sDuration] = getADSR(x, fs)
     %% Let's say the sustain level is the average power level between decay_end and sustain end
     s = mean(P(decay_end:s_end));
     
-    %% End the decay when we reach -40 dB from sustain or 0.01
+    %% End the release when we reach -40 dB from sustain or 0.01 the sustain level
     r_end = find(P < 0.01*s,1);
     if isempty(r_end) || isempty(r_end(r_end>s_end))
         r = t(K)-t(s_end);
