@@ -52,6 +52,7 @@ signal = signal ./ max(abs(signal));
 figure();
 spectrogram(signal, power(2,10), [], 0:5000, fs, 'yaxis');
 soundsc(signal, fs);
+% audiowrite('piano_synth.wav', signal, fs);
 
 %% SYNTHESIZE SNARE
 
