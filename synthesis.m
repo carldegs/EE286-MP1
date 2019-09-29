@@ -35,7 +35,7 @@ signal = zeros(length(x) + 1,1)';
 
 for k = 1:6
     % create sine wave
-    new_signal = sin(2*pi*(ff * k)*t);
+    new_signal = sin(2*pi*(ff * k));
     % add envelope
     new_signal = new_signal .* env;
     % new_signal = new_signal .* P;
@@ -44,13 +44,14 @@ for k = 1:6
 end
 
 % add filters to remove unnecessary frequencies
-[b,a] = butter(2, 100 / fs, 'high');
+[b,a] = butter(2, 3000 / fs, 'high');
 signal = filter(b,a,signal);
 
 signal = signal ./ max(abs(signal));
 
 figure();
 spectrogram(signal, power(2,10), [], 0:5000, fs, 'yaxis');
+soundsc(signal, fs);
 
 %% SYNTHESIZE SNARE
 
