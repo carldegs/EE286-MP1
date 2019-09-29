@@ -49,6 +49,18 @@ signal = signal ./ max(abs(signal));
 figure();
 spectrogram(signal, power(2,10), [], 0:5000, fs, 'yaxis');
 
+%% SYNTHESIZE SNARE
+
 soundsc(x, fs);
 pause(5);
 soundsc(signal, fs);
+[snare,snareFS] = audioread('snare.wav');
+
+%% Extract ADSR params
+[snareAttack, snareDecay, snareSustain, snareRelease] = getADSR(snare, snareFS);
+
+
+%% Generate ADSR envelope
+snareADSREnvelope = ADSRenvelope(snareAttack, snareDecay, snareSustain, snareRelease,0.1,8000);
+
+%% Compate ADSR envelope with original envelope
