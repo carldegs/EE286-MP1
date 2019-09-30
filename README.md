@@ -57,4 +57,5 @@ and
 Dr Kirill Sidorov
 School of Computer Science & Informatics
 Cardi University, UK
+
 [2] Florian LE BOURDAIS, "Understanding the Karplus-Strong with Python (Synthetic Guitar Sounds Included)",  20 Apr 2017, https://flothesof.github.io/Karplus-Strong-algorithm-Python.html
