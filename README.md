@@ -55,7 +55,6 @@ Prof David Marshall
 dave.marshall@cs.cardiff.ac.uk
 and
 Dr Kirill Sidorov
-K.Sidorov@cs.cf.ac.uk
-www.facebook.com/kirill.sidorov
 School of Computer Science & Informatics
 Cardi University, UK
+[2] Florian LE BOURDAIS, "Understanding the Karplus-Strong with Python (Synthetic Guitar Sounds Included)",  20 Apr 2017, https://flothesof.github.io/Karplus-Strong-algorithm-Python.html
