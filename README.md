@@ -64,7 +64,13 @@ The algorithm is modified, so that the delay line averaging function changes its
 y[n] = 0.5*(y_p[n] + y_p[n-1]), probability p 
 y[n] = -0.5*(y_p[n] + y_p[n-1]), probability 1-p
 ```
-The results in [2] already synthesize a sound with the ADSR properties of a drum - rapid attack, minimal sustain, and mostly decay. The wavetable used in [2] was a DC signal. This algorithm works well simulating drum sounds that don't resonate. However, in its simplest form, this does not replicate the vibrancy of the snare sound. To add complexity to the timbre, the wavetable was changed to an FM signal. The FM signal was designed to have the same center frequency and bandwidth as the measured snare spectrum. Another component that was tweaked was the stretch factor, also mentioned in [2]. The synthesizer then applies the ADSR envelope extracted from the original snare.
+The results in [2] already synthesize a sound with the ADSR properties of a drum - rapid attack, minimal sustain, and mostly decay. The wavetable used in [2] was a DC signal. This algorithm works well simulating drum sounds that don't resonate. However, in its simplest form, this does not replicate the vibrancy of the snare sound. To add complexity to the timbre, the wavetable was changed to an FM signal. The FM signal was designed to have the same center frequency and bandwidth as the measured snare spectrum. Another parameter that was tweaked was the stretch factor, also mentioned in [2]. The synthesizer then applies the ADSR envelope extracted from the original snare.
+
+Two snare samples are synthesized from synthesis.m. 
+The first sample was generated from a DC wavetable fed to a Karplus Strong delay line. The second sample used an FM wavetable instead with a center frequency at the 170Hz, where the original snare sample has an energy peak. The probability and stretch factor are determined from the experiments in snare.m; the same p and stretch_factor values are applied to both samples.
+![Figure X](spectrogram_snare_dc.png)
+![Figure X](spectrogram_snare_fm.png)
+
 
 # Synthesized samples
 
