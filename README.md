@@ -1,11 +1,14 @@
 # EE286-MP1
+
 Synthesizer Machine Problem
+
+Narz Marbeth David
+Carl de Guia
+EEE Institute, University of the Philippines
 
 # Methodology
 
-## Spectrogram
-
-## ADSR Envelope
+## ADSR Envelopes
 
 When a mechanical musical instrument produces sound, the relative volume of the sound produced changes over time. The way that this
 varies is different from instrument to instrument [1]. 
@@ -63,10 +66,18 @@ y[n] = -0.5*(y_p[n] + y_p[n-1]), probability 1-p
 ```
 The results in [2] already synthesize a sound with the ADSR properties of a drum - rapid attack, minimal sustain, and mostly decay. The wavetable used in [2] was a DC signal. This algorithm works well simulating drum sounds that don't resonate. However, in its simplest form, this does not replicate the vibrancy of the snare sound. To add complexity to the timbre, the wavetable was changed to an FM signal. The FM signal was designed to have the same center frequency and bandwidth as the measured snare spectrum. Another component that was tweaked was the stretch factor, also mentioned in [2]. The synthesizer then applies the ADSR envelope extracted from the original snare.
 
-# Results
-Trumpet samples
-Snare samples
-Piano samples
+# Synthesized samples
+
+
+Synthesized Trumpet: 
+* [trumpet.wav](synth/trumpet.wav)
+
+Synthesized Snare Clips:
+* Snare with DC wavetable [snare_karplus_dc_wavetable.wav](synth/snare_karplus_dc_wavetable.wav)
+* Snare with FM wavetable [snare_karplus_fm_wavetable.wav](synth/snare_karplus_fm_wavetable.wav)
+
+Synthesized Piano: 
+* [piano.wav](synth/piano.wav)
 
 # References 
 
