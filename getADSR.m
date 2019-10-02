@@ -1,4 +1,3 @@
-
 function [a,d,s,r, t, P, sDuration] = getADSR(x, fs)
     L = floor(fs*0.02); % 20ms windows
     [t,P] = intensityContour(x,fs,L);
