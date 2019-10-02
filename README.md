@@ -1,11 +1,16 @@
 # EE286-MP1
+
 Synthesizer Machine Problem
+
+Narz Marbeth David
+
+Carl de Guia
+
+EEE Institute, University of the Philippines
 
 # Methodology
 
-## Spectrogram
-
-## ADSR Envelope
+## ADSR Envelopes
 
 When a mechanical musical instrument produces sound, the relative volume of the sound produced changes over time. The way that this
 varies is different from instrument to instrument [1]. 
@@ -61,21 +66,29 @@ The algorithm is modified, so that the delay line averaging function changes its
 y[n] = 0.5*(y_p[n] + y_p[n-1]), probability p 
 y[n] = -0.5*(y_p[n] + y_p[n-1]), probability 1-p
 ```
-The results in [2] already synthesize a sound with the ADSR properties of a drum - rapid attack, minimal sustain, and mostly decay. The wavetable used in [2] was a DC signal. This algorithm works well simulating drum sounds that don't resonate. However, in its simplest form, this does not replicate the vibrancy of the snare sound. To add complexity to the timbre, the wavetable was changed to an FM signal. The FM signal was designed to have the same center frequency and bandwidth as the measured snare spectrum. Another component that was tweaked was the stretch factor, also mentioned in [2]. The synthesizer then applies the ADSR envelope extracted from the original snare.
+The results in [2] already synthesize a sound with the ADSR properties of a drum - rapid attack, minimal sustain, and mostly decay. The wavetable used in [2] was a DC signal. This algorithm works well simulating drum sounds that don't resonate. However, in its simplest form, this does not replicate the vibrancy of the snare sound. To add complexity to the timbre, the wavetable was changed to an FM signal. The FM signal was designed to have the same center frequency and bandwidth as the measured snare spectrum. Another parameter that was tweaked was the stretch factor, also mentioned in [2]. The synthesizer then applies the ADSR envelope extracted from the original snare.
 
-# Results
-Trumpet samples
-Snare samples
-Piano samples
+Two snare samples are synthesized from synthesis.m. 
+The first sample was generated from a DC wavetable fed to a Karplus Strong delay line. The second sample used an FM wavetable instead with a center frequency at the 170Hz, where the original snare sample has an energy peak. The probability and stretch factor are determined from the experiments in snare.m; the same p and stretch_factor values are applied to both samples.
+![Figure X](spectrogram_snare_dc.png)
+![Figure X](spectrogram_snare_fm.png)
+
+
+# Synthesized samples
+
+
+Synthesized Trumpet: 
+* [trumpet.wav](synth/trumpet.wav)
+
+Synthesized Snare Clips:
+* Snare with DC wavetable [snare_karplus_dc_wavetable.wav](synth/snare_karplus_dc_wavetable.wav)
+* Snare with FM wavetable [snare_karplus_fm_wavetable.wav](synth/snare_karplus_fm_wavetable.wav)
+
+Synthesized Piano: 
+* [piano.wav](synth/piano.wav)
 
 # References 
 
-[1] CM3106 Chapter 5: Digital Audio Synthesis
-Prof David Marshall
-dave.marshall@cs.cardiff.ac.uk
-and
-Dr Kirill Sidorov
-School of Computer Science & Informatics
-Cardi University, UK
+[1] Marshall, D. and Sidorov, K., "CM3106 Chapter 5: Digital Audio Synthesis", School of Computer Science & Informatics, Cardi University, UK
 
 [2] Florian LE BOURDAIS, "Understanding the Karplus-Strong with Python (Synthetic Guitar Sounds Included)",  20 Apr 2017, https://flothesof.github.io/Karplus-Strong-algorithm-Python.html
