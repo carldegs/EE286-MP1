@@ -3,7 +3,6 @@ close all;
 clear;
 
 plot_spectrogram('Piano_mf_A4.wav', 5000);
-plot_spectrogram('snare.wav', 10000);
 plot_spectrogram('Trumpet_novib_A4.wav', 15000);
 
 %% SYNTHESIZE PIANO
@@ -55,20 +54,30 @@ soundsc(signal, fs);
 % audiowrite('piano_synth.wav', signal, fs);
 
 %% SYNTHESIZE SNARE
-
-soundsc(x, fs);
-pause(5);
-soundsc(signal, fs);
+close all;
 [snare,snareFS] = audioread('snare.wav');
+soundsc(snare, snareFS);
+pause;
+figure;plot_spectrogram('snare.wav', 10000);
+
+% Check Snare Spectrum
+snareFFT = fft(snare);
+snareMag = abs(snareFFT);
+snareMag = snareMag./max(snareMag);
+figure;plot(linspace(0, snareFS, length(snare)), 20*log10(snareMag));
+axis([0 1000 -40 10]);
+% Has a peak at around 160Hz
+
 
 % Extract ADSR params
-[snareAttack, snareDecay, snareSustain, snareRelease] = getADSR(snare, snareFS);
-
+[snareAttack, snareDecay, snareSustain, snareRelease, t, P, sDuration] = getADSR(snare(:,1), snareFS);
 
 % Generate ADSR envelope
-snareADSREnvelope = ADSRenvelope(snareAttack, snareDecay, snareSustain, snareRelease,0.1,8000);
+snareADSREnvelope = ADSRenvelope(snareAttack, snareDecay, snareSustain, snareRelease,sDuration,8000);
 
-% Compate ADSR envelope with original envelope
+% Synthesize using Karplus Strong
+synthSnare=karplus_strong_drum(snareADSREnvelope, snareFS, round(snareFS/160),0.4);
+soundsc(synthSnare,snareFS);
 
 %% SYNTHESIZE TRUMPET
 close all;
@@ -120,3 +129,4 @@ spectrogram(signal, power(2,10), [], 0:15000, fs, 'yaxis');
 % soundsc(x, fs);
 % pause(8);
 soundsc(signal, fs);
+
