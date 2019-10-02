@@ -81,12 +81,5 @@ Synthesized Piano:
 
 # References 
 
-[1] CM3106 Chapter 5: Digital Audio Synthesis
-Prof David Marshall
-dave.marshall@cs.cardiff.ac.uk
-and
-Dr Kirill Sidorov
-School of Computer Science & Informatics
-Cardi University, UK
-
+[1] Marshall, D. and Sidorov, K., "CM3106 Chapter 5: Digital Audio Synthesis", School of Computer Science & Informatics, Cardi University, UK
 [2] Florian LE BOURDAIS, "Understanding the Karplus-Strong with Python (Synthetic Guitar Sounds Included)",  20 Apr 2017, https://flothesof.github.io/Karplus-Strong-algorithm-Python.html
